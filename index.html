@@ -16,13 +16,21 @@
   <br />
 
   <button id="playBtn">Tocar Música</button>
+  <p id="status"></p>
 
   <script>
     const audio = document.getElementById('audio');
     const button = document.getElementById('playBtn');
+    const status = document.getElementById('status');
 
     button.addEventListener('click', () => {
-      audio.play();
+      audio.play().then(() => {
+        status.textContent = 'Música tocando!';
+        console.log('Música tocando');
+      }).catch(error => {
+        status.textContent = 'Erro ao tentar tocar a música.';
+        console.error('Erro ao tocar áudio:', error);
+      });
     });
   </script>
 </body>
