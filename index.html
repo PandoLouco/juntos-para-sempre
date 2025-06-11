@@ -1,87 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juntos Para Sempre</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fff0f5;
-      text-align: center;
-      color: #333;
-    }
-    .container {
-      padding: 30px;
-    }
-    img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      margin-bottom: 30px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    .contador {
-      font-size: 1.8em;
-      font-weight: bold;
-      margin: 20px 0;
-    }
-    .mensagem {
-      font-size: 1.2em;
-      margin-top: 20px;
-      color: #800080;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <img src="nosso casamonto.jpg" alt="Foto do casal">
-    <h1>Juntos desde 11 de Junho de 2021</h1>
-    <div class="contador" id="contador"></div>
-    <div class="mensagem">...mas estaremos Juntos para sempre ❤️</div>
-  </div>
-
-  <!-- Música de fundo invisível -->
-  <iframe 
-    src="https://www.youtube.com/embed/TfYzizYXGKo?autoplay=1&loop=1&playlist=TfYzizYXGKo" 
-    frameborder="0" 
-    allow="autoplay" 
-    style="display: none;">
-  </iframe>
-
-  <script>
-    const dataInicio = new Date("2021-06-11T00:00:00").getTime();
-
-    function atualizarContador() {
-      const agora = new Date().getTime();
-      const tempoDecorrido = agora - dataInicio;
-
-      const segundosTotais = Math.floor(tempoDecorrido / 1000);
-
-      const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
-      const dias = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (24 * 60 * 60));
-      const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
-      const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
-      const segundos = segundosTotais % 60;
-
-      document.getElementById("contador").innerHTML =
-        `${anos} anos, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
-    }
-
-    atualizarContador();
-    setInterval(atualizarContador, 1000);
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Just the Two of Us</title>
@@ -89,10 +8,22 @@
 <body>
   <h1>Just the Two of Us - Grover Washington Jr. feat. Bill Withers</h1>
 
-  <audio controls autoplay>
+  <audio id="audio" controls>
     <source src="https://archive.org/download/grover-washington-jr.-feat.-bill-withers-just-the-two-of-us-hq_202202/grover-washington-jr.-feat.-bill-withers-just-the-two-of-us-hq.mp3" type="audio/mpeg" />
     Seu navegador não suporta o elemento de áudio.
   </audio>
 
+  <br />
+
+  <button id="playBtn">Tocar Música</button>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const button = document.getElementById('playBtn');
+
+    button.addEventListener('click', () => {
+      audio.play();
+    });
+  </script>
 </body>
 </html>
