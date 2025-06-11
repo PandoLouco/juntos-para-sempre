@@ -3,34 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Teste de Música</title>
+  <title>Juntos Para Sempre</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      padding: 30px;
+    }
+    img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .contador {
+      font-size: 1.8em;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+    .mensagem {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #800080;
+    }
+    audio {
+      margin-top: 20px;
+      outline: none;
+    }
+    #playSoundBtn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border: none;
+      background-color: #800080;
+      color: white;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Teste de Reprodução de Música</h1>
+  <div class="container">
+    <img src="nosso casamonto.jpg" alt="Foto do casal" />
+    <h1>Juntos desde 11 de Junho de 2021</h1>
+    <div class="contador" id="contador"></div>
+    <div class="mensagem">...mas estaremos Juntos para sempre ❤️</div>
 
-  <audio id="audio" controls>
-    <source src="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3" type="audio/mpeg" />
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
+    <audio id="audio" autoplay muted loop>
+      <source src="just-the-two-of-us.mp3" type="audio/mpeg" />
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
 
-  <br />
-
-  <button id="playBtn">Tocar Música</button>
-
-  <p id="status"></p>
+    <button id="playSoundBtn">Ativar Som</button>
+  </div>
 
   <script>
-    const audio = document.getElementById('audio');
-    const button = document.getElementById('playBtn');
-    const status = document.getElementById('status');
+    const dataInicio = new Date("2021-06-11T00:00:00").getTime();
 
-    button.addEventListener('click', () => {
-      audio.play().then(() => {
-        status.textContent = 'Música tocando!';
-      }).catch(error => {
-        status.textContent = 'Erro ao tentar tocar a música.';
-        console.error('Erro:', error);
-      });
+    function atualizarContador() {
+      const agora = new Date().getTime();
+      const tempoDecorrido = agora - dataInicio;
+
+      const segundosTotais = Math.floor(tempoDecorrido / 1000);
+
+      const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
+      const dias = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (24 * 60 * 60));
+      const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
+      const minutos = Math.floor((segundosTotais % (60 * 60)) / 60);
+      const segundos = segundosTotais % 60;
+
+      document.getElementById("contador").innerHTML =
+        `${anos} anos, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+
+    // Botão para ativar som
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('playSoundBtn');
+
+    playBtn.addEventListener('click', () => {
+      audio.muted = false;
+      audio.play();
+      playBtn.style.display = 'none';
     });
   </script>
 </body>
