@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Just the Two of Us</title>
-</head>
-<body>
-  <h1>Just the Two of Us - Grover Washington Jr. feat. Bill Withers</h1>
-
-  <audio id="audio" controls>
-    <source src="https://archive.org/download/grover-washington-jr.-feat.-bill-withers-just-the-two-of-us-hq_202202/grover-washington-jr.-feat.-bill-withers-just-the-two-of-us-hq.mp3" type="audio/mpeg" />
-    Seu navegador não suporta o elemento de áudio.
-  </audio>
-
-  <br />
-
-  <button id="playBtn">Tocar Música</button>
-  <p id="status"></p>
-
-  <script>
-    const audio = document.getElementById('audio');
-    const button = document.getElementById('playBtn');
-    const status = document.getElementById('status');
-
-    button.addEventListener('click', () => {
-      audio.play().then(() => {
-        status.textContent = 'Música tocando!';
-        console.log('Música tocando');
-      }).catch(error => {
-        status.textContent = 'Erro ao tentar tocar a música.';
-        console.error('Erro ao tocar áudio:', error);
-      });
-    });
-  </script>
-</body>
-</html>
+<audio id="audio" controls>
+  <source src="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3" type="audio/mpeg" />
+  Seu navegador não suporta o elemento de áudio.
+</audio>
