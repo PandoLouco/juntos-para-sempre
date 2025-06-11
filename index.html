@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juntos Para Sempre</title>
   <style>
     body {
@@ -37,36 +37,23 @@
       margin-top: 20px;
       color: #800080;
     }
-    audio {
-      margin-top: 20px;
-      outline: none;
-    }
-    #playSoundBtn {
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 1em;
-      cursor: pointer;
-      border: none;
-      background-color: #800080;
-      color: white;
-      border-radius: 8px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="nosso casamonto.jpg" alt="Foto do casal" />
+    <img src="nosso casamonto.jpg" alt="Foto do casal">
     <h1>Juntos desde 11 de Junho de 2021</h1>
     <div class="contador" id="contador"></div>
     <div class="mensagem">...mas estaremos Juntos para sempre ❤️</div>
-
-    <audio id="audio" autoplay muted loop>
-      <source src="just-the-two-of-us.mp3" type="audio/mpeg" />
-      Seu navegador não suporta o elemento de áudio.
-    </audio>
-
-    <button id="playSoundBtn">Ativar Som</button>
   </div>
+
+  <!-- Música de fundo invisível -->
+  <iframe 
+    src="https://www.youtube.com/embed/TfYzizYXGKo?autoplay=1&loop=1&playlist=TfYzizYXGKo" 
+    frameborder="0" 
+    allow="autoplay" 
+    style="display: none;">
+  </iframe>
 
   <script>
     const dataInicio = new Date("2021-06-11T00:00:00").getTime();
@@ -89,16 +76,23 @@
 
     atualizarContador();
     setInterval(atualizarContador, 1000);
-
-    // Botão para ativar som
-    const audio = document.getElementById('audio');
-    const playBtn = document.getElementById('playSoundBtn');
-
-    playBtn.addEventListener('click', () => {
-      audio.muted = false;
-      audio.play();
-      playBtn.style.display = 'none';
-    });
   </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Just the Two of Us</title>
+</head>
+<body>
+  <h1>Just the Two of Us - Grover Washington Jr. feat. Bill Withers</h1>
+
+  <audio controls autoplay>
+    <source src="https://archive.org/download/grover-washington-jr.-feat.-bill-withers-just-the-two-of-us-hq_202202/grover-washington-jr.-feat.-bill-withers-just-the-two-of-us-hq.mp3" type="audio/mpeg" />
+    Seu navegador não suporta o elemento de áudio.
+  </audio>
+
 </body>
 </html>
