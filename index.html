@@ -82,8 +82,12 @@
   </audio>
 
   <script>
-    const totalImagens = 64;
-    const imagens = Array.from({ length: totalImagens }, (_, i) => `${i + 1}.jpg`);
+    // Cria array das imagens de 1 a 64, excluindo a 9
+    const imagens = Array.from({ length: 64 }, (_, i) => i + 1)
+      .filter(num => num !== 9)
+      .map(num => `${num}.jpg`);
+
+    const totalImagens = imagens.length;
 
     function escolherImagemDoDia() {
       const hoje = new Date();
