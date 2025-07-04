@@ -37,25 +37,72 @@
       margin-top: 20px;
       color: #800080;
     }
+    .audio-controls {
+      margin-top: 20px;
+    }
+    button {
+      font-size: 1em;
+      padding: 8px 16px;
+      margin-right: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #800080;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #a040a0;
+    }
+    input[type="range"] {
+      vertical-align: middle;
+      width: 150px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="nosso casamonto.jpg" alt="Foto do casal" />
+    <img id="foto" src="" alt="Foto do casal" />
     <h1>Juntos desde 11 de Junho de 2021</h1>
     <div class="contador" id="contador"></div>
     <div class="mensagem">...mas estaremos Juntos para sempre ❤️</div>
+
+    <div class="audio-controls">
+      <button id="playPauseBtn">Pause</button>
+      <label for="volumeControl">Volume:</label>
+      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" />
+    </div>
   </div>
 
-  <script>
-    const dataInicio = new Date("2021-06-11T00:00:00").getTime();
+  <!-- Música de fundo -->
+  <audio id="audioPlayer" autoplay loop>
+    <source src="just-the-two-of-us.mp3.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio HTML5.
+  </audio>
 
+  <script>
+    const totalImagens = 64;
+    const imagens = Array.from({ length: totalImagens }, (_, i) => `${i + 1}.jpg`);
+
+    function escolherImagemDoDia() {
+      const hoje = new Date();
+      const diaAno = Math.floor((hoje - new Date(hoje.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      const seed = (diaAno * 47 + 17) % totalImagens;
+      return imagens[seed];
+    }
+
+    function mostrarImagem() {
+      const imagem = escolherImagemDoDia();
+      document.getElementById("foto").src = imagem;
+    }
+
+    const dataInicio = new Date("2021-06-11T00:00:00").getTime();
     function atualizarContador() {
       const agora = new Date().getTime();
       const tempoDecorrido = agora - dataInicio;
 
       const segundosTotais = Math.floor(tempoDecorrido / 1000);
-
       const anos = Math.floor(segundosTotais / (365.25 * 24 * 60 * 60));
       const dias = Math.floor((segundosTotais % (365.25 * 24 * 60 * 60)) / (24 * 60 * 60));
       const horas = Math.floor((segundosTotais % (24 * 60 * 60)) / (60 * 60));
@@ -66,8 +113,28 @@
         `${anos} anos, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
     }
 
+    mostrarImagem();
     atualizarContador();
     setInterval(atualizarContador, 1000);
+
+    // Controles de áudio
+    const audioPlayer = document.getElementById("audioPlayer");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const volumeControl = document.getElementById("volumeControl");
+
+    playPauseBtn.addEventListener("click", () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playPauseBtn.textContent = "Pause";
+      } else {
+        audioPlayer.pause();
+        playPauseBtn.textContent = "Play";
+      }
+    });
+
+    volumeControl.addEventListener("input", () => {
+      audioPlayer.volume = volumeControl.value;
+    });
   </script>
 </body>
 </html>
